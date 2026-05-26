@@ -322,6 +322,174 @@ function tad_create_or_update_theme_page( $page, $created_pages ) {
 }
 
 /**
+ * Return an existing menu item ID by title so activation can run repeatedly without duplicates.
+ *
+ * @param int    $menu_id Menu term ID.
+ * @param string $title Menu item title.
+ * @return int
+ */
+function tad_get_menu_item_id_by_title( $menu_id, $title ) {
+	$items = wp_get_nav_menu_items( $menu_id );
+
+	if ( empty( $items ) ) {
+		return 0;
+	}
+
+	foreach ( $items as $item ) {
+		if ( $title === $item->title ) {
+			return (int) $item->ID;
+		}
+	}
+
+	return 0;
+}
+
+/**
+ * Create or update a nav menu item.
+ *
+ * @param int   $menu_id Menu term ID.
+ * @param array $item Menu item settings.
+ * @return int
+ */
+function tad_create_or_update_menu_item( $menu_id, $item ) {
+	$title    = $item['title'];
+	$item_id  = tad_get_menu_item_id_by_title( $menu_id, $title );
+	$defaults = [
+		'menu-item-title'     => $title,
+		'menu-item-status'    => 'publish',
+		'menu-item-parent-id' => isset( $item['parent_id'] ) ? (int) $item['parent_id'] : 0,
+	];
+
+	if ( ! empty( $item['page_id'] ) ) {
+		$defaults['menu-item-type']      = 'post_type';
+		$defaults['menu-item-object']    = 'page';
+		$defaults['menu-item-object-id'] = (int) $item['page_id'];
+	} else {
+		$defaults['menu-item-type'] = 'custom';
+		$defaults['menu-item-url']  = isset( $item['url'] ) ? $item['url'] : '#';
+	}
+
+	$result = wp_update_nav_menu_item( $menu_id, $item_id, $defaults );
+
+	return is_wp_error( $result ) ? 0 : (int) $result;
+}
+
+/**
+ * Create the primary navigation menu and assign it to the Header menu location.
+ *
+ * @param array $created_pages Created page IDs keyed by slug path.
+ * @return void
+ */
+function tad_create_primary_menu_on_activation( $created_pages ) {
+	$menu_name = __( 'Primary Menu', 'trade-africa-direct' );
+	$menu      = wp_get_nav_menu_object( $menu_name );
+
+	if ( ! $menu ) {
+		$menu_id = wp_create_nav_menu( $menu_name );
+
+		if ( is_wp_error( $menu_id ) ) {
+			return;
+		}
+	} else {
+		$menu_id = (int) $menu->term_id;
+	}
+
+	tad_create_or_update_menu_item(
+		$menu_id,
+		[
+			'title' => __( 'Home', 'trade-africa-direct' ),
+			'url'   => home_url( '/' ),
+		]
+	);
+
+	$products_item_id = tad_create_or_update_menu_item(
+		$menu_id,
+		[
+			'title' => __( 'Products', 'trade-africa-direct' ),
+			'url'   => home_url( '/export-portfolio/' ),
+		]
+	);
+
+	$product_pages = [
+		'bulk-dried-fruits-uganda'       => __( 'Bulk Dried Fruits', 'trade-africa-direct' ),
+		'fresh-hass-avocados'           => __( 'Fresh Hass Avocados', 'trade-africa-direct' ),
+		'macadamia-nuts-uganda'         => __( 'Raw Macadamia Nuts', 'trade-africa-direct' ),
+		'nilotica-shea-butter'          => __( 'Nilotica Shea Butter', 'trade-africa-direct' ),
+		'specialty-green-coffee-beans'  => __( 'Specialty Coffee', 'trade-africa-direct' ),
+		'ugandan-cocoa-beans'           => __( 'Cocoa Beans', 'trade-africa-direct' ),
+		'nile-perch-fish-maw'           => __( 'Nile Perch & Fish Maw', 'trade-africa-direct' ),
+	];
+
+	foreach ( $product_pages as $path => $title ) {
+		if ( empty( $created_pages[ $path ] ) ) {
+			continue;
+		}
+
+		tad_create_or_update_menu_item(
+			$menu_id,
+			[
+				'title'     => $title,
+				'page_id'   => $created_pages[ $path ],
+				'parent_id' => $products_item_id,
+			]
+		);
+	}
+
+	if ( ! empty( $created_pages['quality-certifications-logistics'] ) ) {
+		tad_create_or_update_menu_item(
+			$menu_id,
+			[
+				'title'   => __( 'Quality & Logistics', 'trade-africa-direct' ),
+				'page_id' => $created_pages['quality-certifications-logistics'],
+			]
+		);
+	}
+
+	if ( ! empty( $created_pages['about'] ) ) {
+		tad_create_or_update_menu_item(
+			$menu_id,
+			[
+				'title'   => __( 'About', 'trade-africa-direct' ),
+				'page_id' => $created_pages['about'],
+			]
+		);
+	}
+
+	$insights_item_id = ! empty( $created_pages['market-insights'] ) ? tad_create_or_update_menu_item(
+		$menu_id,
+		[
+			'title'   => __( 'Market Insights', 'trade-africa-direct' ),
+			'page_id' => $created_pages['market-insights'],
+		]
+	) : 0;
+
+	$insight_pages = [
+		'market-insights/sourcing-agricultural-products-uganda' => __( 'Uganda Sourcing Guide 2026', 'trade-africa-direct' ),
+		'uganda-harvest-calendar-2026'                         => __( '2026 Harvest Calendar', 'trade-africa-direct' ),
+		'blog'                                                 => __( 'Blog', 'trade-africa-direct' ),
+	];
+
+	foreach ( $insight_pages as $path => $title ) {
+		if ( empty( $created_pages[ $path ] ) ) {
+			continue;
+		}
+
+		tad_create_or_update_menu_item(
+			$menu_id,
+			[
+				'title'     => $title,
+				'page_id'   => $created_pages[ $path ],
+				'parent_id' => $insights_item_id,
+			]
+		);
+	}
+
+	$locations           = get_theme_mod( 'nav_menu_locations', [] );
+	$locations['menu-1'] = $menu_id;
+	set_theme_mod( 'nav_menu_locations', $locations );
+}
+
+/**
  * Create core site pages and configure front page / posts page on theme activation.
  *
  * @return void
@@ -429,6 +597,8 @@ function tad_create_theme_pages_on_activation() {
 	if ( ! empty( $created_pages['blog'] ) ) {
 		update_option( 'page_for_posts', (int) $created_pages['blog'] );
 	}
+
+	tad_create_primary_menu_on_activation( $created_pages );
 
 	flush_rewrite_rules();
 }
@@ -613,6 +783,10 @@ function tad_get_theme_setup_warnings() {
 
 	if ( $blog_page && (int) get_option( 'page_for_posts' ) !== (int) $blog_page->ID ) {
 		$warnings[] = __( 'Posts page mismatch: the Blog page should be selected as the posts page.', 'trade-africa-direct' );
+	}
+
+	if ( ! has_nav_menu( 'menu-1' ) ) {
+		$warnings[] = __( 'Primary Menu mismatch: Appearance > Menus should have a menu assigned to the Header location.', 'trade-africa-direct' );
 	}
 
 	return $warnings;

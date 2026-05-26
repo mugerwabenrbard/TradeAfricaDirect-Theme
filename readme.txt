@@ -1,6 +1,6 @@
-=== Hello Elementor Child ===
+=== Trade Africa Direct ===
 
-Contributors: elemntor
+Contributors: tradeafricadirect
 Requires at least: 5.9
 Tested up to: 6.2
 Stable tag: 2.0.0
@@ -10,11 +10,11 @@ License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
 
-The Hello Elementor Child Theme is a starter blank child theme for [Hello Elementor](https://wordpress.org/themes/hello-elementor/) theme.
+Trade Africa Direct is a child theme for the [Hello Elementor](https://wordpress.org/themes/hello-elementor/) theme.
 
 == Description ==
 
-Hello Elementor Child is a lightweight and minimalist WordPress theme that was built specifically to work seamlessly with the Elementor page builder plugin. The theme is free, open-source, and designed for users who want a flexible, easy-to-use, and customizable website.
+Trade Africa Direct is a lightweight child theme built to work seamlessly with the Elementor page builder plugin.
 
 The theme's main focus is on providing a solid foundation for users to build their own unique designs using the Elementor drag-and-drop site builder. It is optimized for speed and performance, and its simplicity and flexibility make it a great choice for both beginners and experienced website designers.
 
@@ -32,15 +32,11 @@ The theme supports common WordPress features which can be extended using a child
 This theme, like WordPress, is distributed under the terms of GPL.
 Use it as your springboard to building a site with ***Elementor***.
 
-Hello Elementor bundles the following third-party resources:
+The parent Hello Elementor theme bundles the following third-party resources:
 
 Font Awesome icons for theme screenshot
 License: SIL Open Font License, version 1.1.
 Source: https://fontawesome.com/v4.7.0/
-
-Image for theme screenshot, Copyright Jason Blackeye
-License: CC0 1.0 Universal (CC0 1.0)
-Source: https://stocksnap.io/photo/4B83RD7BV9
 
 == Changelog ==
 

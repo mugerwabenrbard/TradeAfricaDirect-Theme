@@ -1,0 +1,986 @@
+/* =============================================================================
+   About Page — assets/css/about-page.css
+   Template: page-about.php
+   Inspiration: execor.vamtam.com/about/ + finovate.vamtam.com/about/
+   ============================================================================= */
+
+/* ── Container ────────────────────────────────────────────────────────────── */
+.tad-about-container {
+	max-width: var(--tad-container);
+	margin-inline: auto;
+	padding-inline: 40px;
+}
+
+/* ── Shared eyebrow ───────────────────────────────────────────────────────── */
+.tad-about-eyebrow {
+	display: inline-block;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--tad-primary);
+	background: var(--tad-secondary-soft);
+	border-radius: 40px;
+	padding: 4px 14px;
+	margin-bottom: 20px;
+}
+
+.tad-about-eyebrow--light {
+	color: var(--tad-secondary);
+	background: rgba(180, 231, 23, 0.12);
+}
+
+/* ── Shared buttons ───────────────────────────────────────────────────────── */
+.tad-about-btn {
+	display: inline-block;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.9375rem;
+	font-weight: 600;
+	padding: 14px 28px;
+	border-radius: var(--tad-radius);
+	text-decoration: none;
+	transition: background 0.22s, color 0.22s, border-color 0.22s, transform 0.22s var(--tad-ease);
+	white-space: nowrap;
+}
+
+.tad-about-btn--primary {
+	background: var(--tad-primary);
+	color: #fff;
+	border: 2px solid var(--tad-primary);
+}
+
+.tad-about-btn--primary:hover {
+	background: var(--tad-primary-deep);
+	border-color: var(--tad-primary-deep);
+	color: #fff;
+	transform: translateY(-2px);
+}
+
+.tad-about-btn--accent {
+	background: var(--tad-secondary);
+	color: var(--tad-primary);
+	border: 2px solid var(--tad-secondary);
+	font-weight: 700;
+}
+
+.tad-about-btn--accent:hover {
+	background: #a3d415;
+	border-color: #a3d415;
+	color: var(--tad-primary);
+	transform: translateY(-2px);
+}
+
+.tad-about-btn--ghost {
+	background: transparent;
+	color: var(--tad-primary);
+	border: 2px solid var(--tad-primary);
+}
+
+.tad-about-btn--ghost:hover {
+	background: var(--tad-primary);
+	color: #fff;
+	transform: translateY(-2px);
+}
+
+/* ── Directional scroll-reveal extensions ────────────────────────────────── */
+body.tad-reveal-ready .tad-reveal--from-left  { transform: translateX(-44px); }
+body.tad-reveal-ready .tad-reveal--from-right { transform: translateX(44px);  }
+body.tad-reveal-ready .tad-reveal--scale      { transform: scale(0.94);       }
+
+/* The base .tad-reveal.is-visible sets `transform: none; opacity: 1` at higher
+   specificity, so all variants snap to their resting state on entry. */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   1. PAGE HERO — compact heading with hero image below
+   ═══════════════════════════════════════════════════════════════════════════ */
+.tad-about-hero {
+	background: var(--tad-surface);
+	padding: 96px 0 0;
+}
+
+.tad-about-hero__breadcrumb {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.8125rem;
+	color: var(--tad-text-muted);
+	margin-bottom: 24px;
+}
+
+.tad-about-hero__breadcrumb a {
+	color: var(--tad-text-muted);
+	text-decoration: none;
+}
+
+.tad-about-hero__breadcrumb a:hover {
+	color: var(--tad-primary);
+}
+
+.tad-about-hero__breadcrumb span {
+	margin: 0 8px;
+}
+
+.tad-about-hero__head {
+	max-width: 760px;
+	margin-bottom: 48px;
+}
+
+.tad-about-hero__head h1 {
+	font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	margin: 0 0 18px;
+	color: var(--tad-primary);
+}
+
+.tad-about-hero__head h1 em {
+	font-style: normal;
+	color: var(--tad-secondary);
+}
+
+.tad-about-hero__head p {
+	font-size: 1.125rem;
+	line-height: 1.7;
+	color: var(--tad-text-muted);
+	margin: 0;
+	max-width: 600px;
+}
+
+/* Quick fact chips */
+.tad-about-hero__chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 32px;
+}
+
+.tad-about-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--tad-primary);
+	background: var(--tad-surface-white);
+	border: 1px solid var(--tad-border);
+	border-radius: var(--tad-radius);
+	padding: 8px 16px;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tad-about-chip:hover {
+	border-color: var(--tad-primary);
+	box-shadow: 0 2px 8px rgba(15, 61, 58, 0.08);
+}
+
+.tad-about-chip strong {
+	color: var(--tad-primary);
+	font-weight: 700;
+}
+
+/* Hero wide image (like Finovate's hero photo) */
+.tad-about-hero__image {
+	position: relative;
+	width: 100%;
+	height: 420px;
+	overflow: hidden;
+	border-radius: var(--tad-radius-lg) var(--tad-radius-lg) 0 0;
+	margin-top: 40px;
+}
+
+.tad-about-hero__image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 40%;
+	display: block;
+	transition: transform 8s ease;
+}
+
+.tad-about-hero__image:hover img {
+	transform: scale(1.04);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   2. STATS STRIP (Finovate-style)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.tad-about-stats {
+	background: var(--tad-primary);
+}
+
+.tad-about-stats__row {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.tad-about-stat {
+	padding: 36px 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	border-right: 1px solid rgba(255, 255, 255, 0.1);
+	transition: background 0.3s;
+}
+
+.tad-about-stat:last-child {
+	border-right: none;
+}
+
+.tad-about-stat:hover {
+	background: rgba(255, 255, 255, 0.04);
+}
+
+.tad-about-stat__value {
+	font-family: "Work Sans", sans-serif;
+	font-size: clamp(1.75rem, 3vw, 2.5rem);
+	font-weight: 700;
+	color: var(--tad-secondary);
+	line-height: 1;
+	display: block;
+}
+
+.tad-about-stat__label {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.65);
+	line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3. ORIGIN STORY — split, image left + floating card (Execor-style)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.tad-about-origin {
+	background: var(--tad-surface-white);
+	padding: 100px 0;
+}
+
+.tad-about-split {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 80px;
+	align-items: center;
+}
+
+.tad-about-split--gap-lg {
+	gap: 100px;
+}
+
+/* Image block */
+.tad-about-img-wrap {
+	position: relative;
+}
+
+.tad-about-img-wrap img {
+	width: 100%;
+	height: 520px;
+	object-fit: cover;
+	border-radius: var(--tad-radius-lg);
+	display: block;
+	transition: transform 0.7s var(--tad-ease);
+}
+
+.tad-about-img-wrap:hover img {
+	transform: scale(1.02);
+}
+
+/* Execor-style floating green card on the image */
+.tad-about-float-card {
+	position: absolute;
+	bottom: 36px;
+	right: -28px;
+	width: 228px;
+	background: var(--tad-primary);
+	border-radius: var(--tad-radius-lg);
+	padding: 24px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+	transform: translateY(20px);
+	opacity: 0;
+	transition: transform 0.6s 0.3s var(--tad-ease), opacity 0.6s 0.3s;
+}
+
+/* Trigger float card animation when parent image wrap is visible */
+.tad-about-img-wrap.is-visible .tad-about-float-card {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.tad-about-float-card__title {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	color: var(--tad-secondary);
+	margin: 0 0 14px;
+}
+
+.tad-about-float-card__list {
+	list-style: none;
+	margin: 0 0 18px;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
+}
+
+.tad-about-float-card__list li {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	font-size: 0.8125rem;
+	color: rgba(255, 255, 255, 0.85);
+	line-height: 1.45;
+}
+
+.tad-about-float-card__list li::before {
+	content: "";
+	flex-shrink: 0;
+	width: 14px;
+	height: 14px;
+	margin-top: 2px;
+	border-radius: 50%;
+	background: var(--tad-secondary);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none'%3E%3Cpath d='M3 7l3 3 5-5.5' stroke='%230f3d3a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-size: cover;
+}
+
+.tad-about-float-card__btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	color: var(--tad-secondary);
+	text-decoration: none;
+	transition: gap 0.2s;
+}
+
+.tad-about-float-card__btn::after {
+	content: "→";
+}
+
+.tad-about-float-card__btn:hover {
+	gap: 10px;
+	color: var(--tad-secondary);
+}
+
+/* Text copy block */
+.tad-about-copy h2 {
+	font-size: clamp(1.75rem, 2.8vw, 2.375rem);
+	line-height: 1.2;
+	letter-spacing: -0.015em;
+	color: var(--tad-primary);
+	margin: 0 0 20px;
+}
+
+.tad-about-copy p {
+	font-size: 1rem;
+	line-height: 1.8;
+	color: var(--tad-text-muted);
+	margin: 0 0 20px;
+}
+
+.tad-about-copy p:last-of-type {
+	margin-bottom: 0;
+}
+
+.tad-about-copy__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 32px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4. MISSION SPLIT — two-column text (Execor "Empowering Clients" style)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.tad-about-mission {
+	background: var(--tad-surface);
+	padding: 80px 0;
+}
+
+.tad-about-mission__inner {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 80px;
+	align-items: start;
+}
+
+.tad-about-mission__left h2 {
+	font-size: clamp(1.75rem, 2.8vw, 2.375rem);
+	line-height: 1.2;
+	letter-spacing: -0.015em;
+	color: var(--tad-primary);
+	margin: 0;
+}
+
+.tad-about-mission__right p {
+	font-size: 1rem;
+	line-height: 1.8;
+	color: var(--tad-text-muted);
+	margin: 0 0 20px;
+}
+
+.tad-about-mission__right p:last-of-type {
+	margin-bottom: 0;
+}
+
+/* Explore link */
+.tad-about-text-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.9375rem;
+	font-weight: 600;
+	color: var(--tad-primary);
+	text-decoration: none;
+	margin-top: 20px;
+	transition: gap 0.2s var(--tad-ease), color 0.2s;
+}
+
+.tad-about-text-link::after {
+	content: "→";
+	transition: transform 0.2s var(--tad-ease);
+}
+
+.tad-about-text-link:hover {
+	color: var(--tad-primary-deep);
+	gap: 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   5. DIRECT TRADE — 3-point section with ecosystem cards
+   ═══════════════════════════════════════════════════════════════════════════ */
+.tad-about-trade {
+	background: var(--tad-surface-white);
+	padding: 100px 0;
+}
+
+.tad-about-trade__head {
+	margin-bottom: 56px;
+}
+
+.tad-about-trade__head h2 {
+	font-size: clamp(1.75rem, 2.8vw, 2.375rem);
+	line-height: 1.2;
+	letter-spacing: -0.015em;
+	color: var(--tad-primary);
+	margin: 0 0 14px;
+}
+
+.tad-about-trade__head p {
+	font-size: 1.0625rem;
+	line-height: 1.7;
+	color: var(--tad-text-muted);
+	max-width: 680px;
+	margin: 0;
+}
+
+/* 3-column ecosystem cards */
+.tad-about-trade-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+}
+
+.tad-about-trade-card {
+	background: var(--tad-surface);
+	border: 1px solid var(--tad-border);
+	border-radius: var(--tad-radius-lg);
+	padding: 36px 32px;
+	transition: box-shadow 0.3s, transform 0.3s var(--tad-ease), border-color 0.3s;
+}
+
+.tad-about-trade-card:hover {
+	border-color: var(--tad-primary);
+	box-shadow: 0 12px 40px rgba(15, 61, 58, 0.1);
+	transform: translateY(-4px);
+}
+
+.tad-about-trade-card__icon {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: var(--tad-secondary);
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.375rem;
+	line-height: 1;
+}
+
+.tad-about-trade-card__region {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	color: var(--tad-secondary);
+	background: var(--tad-primary);
+	border-radius: 40px;
+	padding: 3px 10px;
+	display: inline-block;
+	margin-bottom: 16px;
+}
+
+.tad-about-trade-card h3 {
+	font-size: 1.0625rem;
+	font-weight: 600;
+	color: var(--tad-primary);
+	margin: 0 0 10px;
+	line-height: 1.35;
+}
+
+.tad-about-trade-card p {
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--tad-text-muted);
+	margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   6. CINEMATIC BANNER — full-width parallax photo (Finovate "How We Got
+   Started" style)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.tad-about-banner {
+	position: relative;
+	height: 540px;
+	overflow: hidden;
+}
+
+.tad-about-banner__img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 35%;
+	display: block;
+	/* Subtle zoom on scroll via CSS — actual parallax requires JS */
+	will-change: transform;
+	transform: scale(1.08);
+	transition: transform 12s ease;
+}
+
+.tad-about-banner.is-visible .tad-about-banner__img {
+	transform: scale(1);
+}
+
+/* Dark gradient overlay */
+.tad-about-banner::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		to right,
+		rgba(0, 22, 20, 0.65) 0%,
+		rgba(0, 22, 20, 0.2) 60%,
+		transparent 100%
+	);
+	pointer-events: none;
+}
+
+/* Floating info card inside banner (Finovate-style) */
+.tad-about-banner__card {
+	position: absolute;
+	top: 50%;
+	left: 64px;
+	transform: translateY(-50%);
+	z-index: 2;
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(12px);
+	border-radius: var(--tad-radius-lg);
+	padding: 32px 36px;
+	max-width: 320px;
+	box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+}
+
+.tad-about-banner__card strong {
+	display: block;
+	font-family: "Work Sans", sans-serif;
+	font-size: 2.25rem;
+	font-weight: 700;
+	color: var(--tad-primary);
+	line-height: 1;
+	margin-bottom: 6px;
+}
+
+.tad-about-banner__card span {
+	display: block;
+	font-family: "DM Sans", sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--tad-primary);
+	margin-bottom: 16px;
+}
+
+.tad-about-banner__card p {
+	font-size: 0.9rem;
+	line-height: 1.65;
+	color: var(--tad-text-muted);
+	margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   7. FACILITY — split section (Execor "Building on Tradition" style)
+      Image left with floating badge, text right with 3 facility points
+   ═══════════════════════════════════════════════════════════════════════════ */
+.tad-about-facility {
+	background: var(--tad-surface);
+	padding: 100px 0;
+}
+
+/* Floating badge variant for the facility section */
+.tad-about-badge {
+	position: absolute;
+	bottom: 28px;
+	left: 28px;
+	background: var(--tad-secondary);
+	border-radius: var(--tad-radius);
+	padding: 16px 20px;
+	z-index: 2;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.tad-about-badge strong {
+	display: block;
+	font-family: "Work Sans", sans-serif;
+	font-size: 1.75rem;
+	font-weight: 700;
+	color: var(--tad-primary);
+	line-height: 1;
+	margin-bottom: 2px;
+}
+
+.tad-about-badge span {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	color: var(--tad-primary);
+}
+
+/* Facility points list */
+.tad-about-facility-list {
+	list-style: none;
+	margin: 28px 0 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.tad-about-facility-list li {
+	display: flex;
+	gap: 16px;
+	align-items: flex-start;
+	padding-bottom: 20px;
+	border-bottom: 1px solid var(--tad-border);
+}
+
+.tad-about-facility-list li:last-child {
+	border-bottom: none;
+	padding-bottom: 0;
+}
+
+.tad-about-facility-list__icon {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: var(--tad-radius);
+	background: var(--tad-primary);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.125rem;
+	margin-top: 2px;
+}
+
+.tad-about-facility-list li strong {
+	display: block;
+	font-family: "Work Sans", sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--tad-primary);
+	margin-bottom: 4px;
+}
+
+.tad-about-facility-list li p {
+	font-size: 0.9375rem;
+	line-height: 1.65;
+	color: var(--tad-text-muted);
+	margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   8. VALUES / PILLARS — 3 large cards (Finovate fiduciary cards style)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.tad-about-values {
+	background: var(--tad-primary);
+	padding: 100px 0;
+	position: relative;
+	overflow: hidden;
+}
+
+.tad-about-values::before {
+	content: "";
+	position: absolute;
+	bottom: -120px;
+	left: -60px;
+	width: 480px;
+	height: 480px;
+	border-radius: 50%;
+	background: radial-gradient(circle, rgba(180, 231, 23, 0.07) 0%, transparent 70%);
+	pointer-events: none;
+}
+
+.tad-about-values__head {
+	text-align: center;
+	margin-bottom: 56px;
+}
+
+.tad-about-values__head h2 {
+	color: #fff;
+	font-size: clamp(1.75rem, 2.8vw, 2.375rem);
+	letter-spacing: -0.015em;
+	margin: 0 0 12px;
+}
+
+.tad-about-values__head p {
+	color: rgba(255, 255, 255, 0.65);
+	font-size: 1.0625rem;
+	max-width: 520px;
+	margin: 0 auto;
+	line-height: 1.7;
+}
+
+.tad-about-values-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+}
+
+.tad-about-value-card {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: var(--tad-radius-lg);
+	padding: 44px 36px;
+	transition: background 0.3s, border-color 0.3s, transform 0.3s var(--tad-ease);
+}
+
+.tad-about-value-card:hover {
+	background: rgba(255, 255, 255, 0.09);
+	border-color: rgba(180, 231, 23, 0.35);
+	transform: translateY(-4px);
+}
+
+.tad-about-value-card__number {
+	font-family: "Work Sans", sans-serif;
+	font-size: 3rem;
+	font-weight: 700;
+	color: rgba(180, 231, 23, 0.18);
+	line-height: 1;
+	margin-bottom: 20px;
+	display: block;
+}
+
+.tad-about-value-card__icon {
+	width: 52px;
+	height: 52px;
+	border-radius: var(--tad-radius);
+	background: var(--tad-secondary);
+	margin-bottom: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	line-height: 1;
+}
+
+.tad-about-value-card h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #fff;
+	margin: 0 0 14px;
+	line-height: 1.3;
+}
+
+.tad-about-value-card p {
+	font-size: 0.9375rem;
+	line-height: 1.75;
+	color: rgba(255, 255, 255, 0.65);
+	margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   9. CTA SECTION — image left + conversion copy right
+   ═══════════════════════════════════════════════════════════════════════════ */
+.tad-about-cta {
+	background: var(--tad-surface-white);
+	padding: 100px 0;
+}
+
+.tad-about-cta__inner {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 80px;
+	align-items: center;
+}
+
+.tad-about-cta__image {
+	position: relative;
+	border-radius: var(--tad-radius-lg);
+	overflow: hidden;
+	height: 480px;
+}
+
+.tad-about-cta__image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.8s var(--tad-ease);
+}
+
+.tad-about-cta__image:hover img {
+	transform: scale(1.04);
+}
+
+.tad-about-cta__copy h2 {
+	font-size: clamp(1.75rem, 2.8vw, 2.375rem);
+	line-height: 1.2;
+	letter-spacing: -0.015em;
+	color: var(--tad-primary);
+	margin: 0 0 18px;
+}
+
+.tad-about-cta__copy p {
+	font-size: 1.0625rem;
+	line-height: 1.75;
+	color: var(--tad-text-muted);
+	margin: 0 0 32px;
+}
+
+.tad-about-cta__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+	.tad-about-container {
+		padding-inline: 32px;
+	}
+
+	.tad-about-split,
+	.tad-about-mission__inner,
+	.tad-about-cta__inner {
+		grid-template-columns: 1fr;
+		gap: 48px;
+	}
+
+	.tad-about-float-card {
+		right: 16px;
+		bottom: 20px;
+		width: 200px;
+	}
+
+	.tad-about-img-wrap img {
+		height: 380px;
+	}
+
+	.tad-about-hero__image {
+		height: 320px;
+	}
+
+	.tad-about-stats__row {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.tad-about-stat:nth-child(odd) {
+		border-right: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.tad-about-stat:nth-child(even) {
+		border-right: none;
+	}
+
+	.tad-about-stat:nth-child(3),
+	.tad-about-stat:nth-child(4) {
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.tad-about-trade-grid,
+	.tad-about-values-grid {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	.tad-about-banner {
+		height: 400px;
+	}
+
+	.tad-about-banner__card {
+		left: 24px;
+		max-width: 280px;
+		padding: 24px 28px;
+	}
+
+	.tad-about-cta__image {
+		height: 320px;
+	}
+}
+
+@media (max-width: 680px) {
+	.tad-about-container {
+		padding-inline: 20px;
+	}
+
+	.tad-about-hero {
+		padding-top: 64px;
+	}
+
+	.tad-about-hero__image {
+		height: 240px;
+	}
+
+	.tad-about-stats__row {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.tad-about-float-card {
+		display: none; /* too cramped on small mobile */
+	}
+
+	.tad-about-img-wrap img {
+		height: 280px;
+	}
+
+	.tad-about-banner {
+		height: 320px;
+	}
+
+	.tad-about-banner__card {
+		left: 16px;
+		right: 16px;
+		max-width: none;
+		top: auto;
+		bottom: 20px;
+		transform: none;
+	}
+
+	.tad-about-origin,
+	.tad-about-trade,
+	.tad-about-facility,
+	.tad-about-values,
+	.tad-about-cta {
+		padding: 64px 0;
+	}
+
+	.tad-about-mission {
+		padding: 56px 0;
+	}
+}

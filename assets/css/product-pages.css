@@ -1,0 +1,236 @@
+/**
+ * Product Pages — Trade Africa Direct
+ * Styles for individual commodity landing pages.
+ * Enqueued via functions.php for product page templates.
+ */
+
+:root {
+	--gd: #0F3D3A;
+	--gdk: #002624;
+	--acc: #BEF127;
+	--acc-h: #a8d420;
+	--surf: #F7FAF6;
+	--slo: #F1F4F0;
+	--wh: #fff;
+	--tb: #404847;
+	--tm: #717977;
+	--bdr: #E2E8E1;
+	--sh: 0 2px 12px rgba(15, 61, 58, .06);
+	--shh: 0 8px 32px rgba(15, 61, 58, .13);
+	--cw: 1240px;
+	--sg: 96px;
+}
+
+.tad-product-page .con { max-width: var(--cw); margin: 0 auto; padding: 0 60px; }
+.tad-product-page .sec { padding: var(--sg) 0; }
+
+/* ── Buttons ── */
+.tad-product-page .btn {
+	display: inline-flex; align-items: center; gap: 8px;
+	padding: 13px 26px; font-family: 'DM Sans', sans-serif;
+	font-size: 14px; font-weight: 600; border-radius: 4px;
+	cursor: pointer; transition: all .2s; border: none;
+	letter-spacing: .01em; line-height: 1; text-decoration: none;
+}
+.tad-product-page .btn-lg { padding: 15px 30px; font-size: 15px; }
+.tad-product-page .bp { background: var(--gd); color: #fff; }
+.tad-product-page .bp:hover { background: var(--gdk); transform: translateY(-1px); color: #fff; }
+.tad-product-page .ba { background: var(--acc); color: var(--gd); }
+.tad-product-page .ba:hover { background: var(--acc-h); transform: translateY(-1px); color: var(--gd); }
+.tad-product-page .bg { background: transparent; color: var(--gd); border: 1.5px solid var(--gd); }
+.tad-product-page .bg:hover { background: var(--gd); color: #fff; }
+.tad-product-page .bw { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+.tad-product-page .bw:hover { border-color: #fff; background: rgba(255,255,255,.1); color: #fff; }
+
+/* ── Hero ── */
+.tad-product-page .hero { background: var(--slo); }
+.tad-product-page .hero-top { padding: 48px 0 40px; }
+.tad-product-page .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--tm); margin-bottom: 28px; }
+.tad-product-page .breadcrumb a { color: var(--tm); transition: color .2s; }
+.tad-product-page .breadcrumb a:hover { color: var(--gd); }
+.tad-product-page .breadcrumb span { color: var(--bdr); }
+.tad-product-page .hero-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; }
+.tad-product-page .hero-text { max-width: 700px; }
+.tad-product-page .eyebrow {
+	display: inline-flex; align-items: center; gap: 8px;
+	font-size: 11px; font-weight: 600; letter-spacing: .1em;
+	text-transform: uppercase; color: var(--tm); margin-bottom: 14px;
+}
+.tad-product-page .eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--acc); }
+.tad-product-page .eyebrow-g { color: var(--acc); }
+.tad-product-page .eyebrow-g::before { background: var(--acc); }
+.tad-product-page .hero h1 {
+	font-family: 'Work Sans', sans-serif; font-size: 50px;
+	font-weight: 700; line-height: 1.07; letter-spacing: -.025em;
+	color: var(--gd); margin-bottom: 18px;
+}
+.tad-product-page .hero h1 em { font-style: normal; color: #3a5700; }
+.tad-product-page .hero-sub { font-size: 16.5px; line-height: 1.72; color: var(--tb); max-width: 620px; }
+.tad-product-page .hero-cta-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; padding-top: 36px; }
+.tad-product-page .hero-tag { background: var(--acc); color: var(--gd); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; border-radius: 99px; }
+.tad-product-page .hero-img { width: 100%; height: 420px; overflow: hidden; border-radius: 8px 8px 0 0; margin-top: 36px; position: relative; }
+.tad-product-page .hero-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tad-product-page .hero-img-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to top, rgba(15,61,58,.4), transparent); pointer-events: none; }
+.tad-product-page .hero-img-badge { position: absolute; bottom: 24px; right: 32px; background: rgba(0,0,0,.5); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; padding: 12px 18px; color: #fff; display: flex; align-items: center; gap: 12px; }
+.tad-product-page .hero-img-badge .hn { font-family: 'Work Sans', sans-serif; font-size: 22px; font-weight: 700; line-height: 1; color: var(--acc); }
+.tad-product-page .hero-img-badge .hl { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 2px; }
+
+/* ── Specs Strip ── */
+.tad-product-page .ss { background: var(--gdk); }
+.tad-product-page .ss-row { display: flex; align-items: stretch; }
+.tad-product-page .ss-item { flex: 1; display: flex; align-items: center; gap: 14px; padding: 20px 36px; border-right: 1px solid rgba(255,255,255,.08); }
+.tad-product-page .ss-item:last-child { border-right: none; }
+.tad-product-page .ss-ico { width: 40px; height: 40px; background: rgba(190,241,39,.14); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--acc); }
+.tad-product-page .ss-ico svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tad-product-page .ss-lbl { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.4); display: block; margin-bottom: 3px; }
+.tad-product-page .ss-val { font-size: 13px; font-weight: 500; color: #fff; line-height: 1.4; }
+
+/* ── Overview ── */
+.tad-product-page .ov { background: #fff; }
+.tad-product-page .ov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 76px; align-items: center; }
+.tad-product-page .ov-text h2 { font-family: 'Work Sans', sans-serif; font-size: 38px; font-weight: 600; line-height: 1.14; letter-spacing: -.02em; color: var(--gd); margin-bottom: 20px; }
+.tad-product-page .ov-text h2 em { font-style: normal; color: #3a5700; }
+.tad-product-page .ov-text p { font-size: 15.5px; line-height: 1.78; color: var(--tb); margin-bottom: 14px; }
+.tad-product-page .ov-text p:last-child { margin-bottom: 0; }
+.tad-product-page .ov-img-w { position: relative; }
+.tad-product-page .ov-img { width: 100%; height: 440px; border-radius: 8px; overflow: hidden; }
+.tad-product-page .ov-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tad-product-page .ov-badge { position: absolute; bottom: -18px; left: -24px; background: #fff; border: 1px solid var(--bdr); border-radius: 8px; padding: 16px 20px; box-shadow: var(--shh); display: flex; align-items: center; gap: 12px; }
+.tad-product-page .ov-b-ico { width: 44px; height: 44px; background: var(--acc); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tad-product-page .ov-b-ico svg { width: 20px; height: 20px; stroke: var(--gd); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.tad-product-page .ov-b-num { font-family: 'Work Sans', sans-serif; font-size: 20px; font-weight: 700; color: var(--gd); line-height: 1; }
+.tad-product-page .ov-b-lbl { font-size: 11px; color: var(--tm); margin-top: 2px; }
+
+/* ── Specs Table ── */
+.tad-product-page .tbl-sec { background: var(--slo); }
+.tad-product-page .tbl-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px; gap: 20px; }
+.tad-product-page .tbl-head h3 { font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 600; letter-spacing: -.015em; color: var(--gd); }
+.tad-product-page .tbl-note { font-size: 12px; color: var(--tm); max-width: 320px; text-align: right; line-height: 1.5; }
+.tad-product-page .tbl-wrap { background: #fff; border-radius: 8px; border: 1px solid var(--bdr); overflow: hidden; box-shadow: var(--sh); overflow-x: auto; }
+.tad-product-page table.dt { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 580px; }
+.tad-product-page table.dt thead tr { background: var(--gdk); }
+.tad-product-page table.dt thead th { padding: 14px 20px; font-family: 'Work Sans', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; text-align: left; white-space: nowrap; }
+.tad-product-page table.dt thead th:first-child { color: #fff; }
+.tad-product-page table.dt thead th:nth-child(2) { color: rgba(255,255,255,.65); }
+.tad-product-page table.dt thead th:nth-child(3) { color: rgba(255,255,255,.45); }
+.tad-product-page table.dt tbody tr { border-bottom: 1px solid var(--bdr); transition: background .15s; }
+.tad-product-page table.dt tbody tr:last-child { border-bottom: none; }
+.tad-product-page table.dt tbody tr:hover { background: var(--surf); }
+.tad-product-page table.dt tbody td { padding: 13px 20px; line-height: 1.5; vertical-align: middle; }
+.tad-product-page table.dt tbody td:first-child { font-weight: 600; color: var(--gd); width: 24%; }
+.tad-product-page table.dt tbody td:nth-child(2) { color: #1a2e2c; }
+.tad-product-page table.dt tbody td:last-child { color: var(--tm); font-size: 12.5px; }
+.tad-product-page .pill { display: inline-flex; align-items: center; gap: 5px; background: rgba(190,241,39,.12); border: 1px solid rgba(190,241,39,.35); border-radius: 99px; padding: 4px 10px; font-size: 12.5px; color: var(--gd); font-weight: 600; white-space: nowrap; }
+.tad-product-page .pill svg { width: 12px; height: 12px; stroke: #3a5700; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.tad-product-page .pill-r { background: rgba(186,26,26,.06); border-color: rgba(186,26,26,.2); color: #7a0000; }
+.tad-product-page .pill-r svg { stroke: #7a0000; }
+.tad-product-page .tbl-spacer { height: 40px; }
+
+/* ── Logistics / Steps ── */
+.tad-product-page .log { background: #fff; }
+.tad-product-page .log-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: start; }
+.tad-product-page .log-text h2 { font-family: 'Work Sans', sans-serif; font-size: 36px; font-weight: 600; line-height: 1.13; letter-spacing: -.02em; color: var(--gd); margin-bottom: 12px; }
+.tad-product-page .log-intro { font-size: 15px; line-height: 1.75; color: var(--tb); margin-bottom: 28px; }
+.tad-product-page .step { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--bdr); }
+.tad-product-page .step:last-child { border-bottom: none; }
+.tad-product-page .step-n { width: 30px; height: 30px; background: var(--gd); color: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'Work Sans', sans-serif; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.tad-product-page .step-lbl { font-size: 14px; font-weight: 600; color: var(--gd); display: block; margin-bottom: 3px; }
+.tad-product-page .step-txt { font-size: 13.5px; color: var(--tb); line-height: 1.6; }
+.tad-product-page .log-img { height: 460px; border-radius: 8px; overflow: hidden; position: sticky; top: 90px; }
+.tad-product-page .log-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Calendar / Availability ── */
+.tad-product-page .cal { background: var(--surf); }
+.tad-product-page .cal-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+.tad-product-page .cal-text h3 { font-family: 'Work Sans', sans-serif; font-size: 28px; font-weight: 600; letter-spacing: -.015em; color: var(--gd); margin-bottom: 12px; }
+.tad-product-page .cal-intro { font-size: 15px; line-height: 1.75; color: var(--tb); margin-bottom: 24px; }
+.tad-product-page .cal-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.tad-product-page .cal-item { display: flex; align-items: flex-start; gap: 12px; background: #fff; border: 1px solid var(--bdr); border-radius: 8px; padding: 14px 16px; box-shadow: var(--sh); }
+.tad-product-page .cal-dot { width: 8px; height: 8px; background: var(--acc); border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.tad-product-page .cal-lbl { font-size: 13.5px; font-weight: 600; color: var(--gd); display: block; margin-bottom: 2px; }
+.tad-product-page .cal-val { font-size: 13px; color: var(--tb); line-height: 1.45; }
+.tad-product-page .cal-note { font-size: 12.5px; color: var(--tm); background: rgba(190,241,39,.1); border: 1px solid rgba(190,241,39,.3); border-radius: 6px; padding: 10px 14px; line-height: 1.5; }
+.tad-product-page .cal-note strong { color: var(--gd); }
+.tad-product-page .cal-vis { background: var(--gdk); border-radius: 8px; padding: 28px 24px; overflow: hidden; }
+.tad-product-page .cal-vis-title { font-family: 'Work Sans', sans-serif; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.45); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 20px; }
+.tad-product-page .cal-month-hdrs { display: grid; grid-template-columns: 80px repeat(12, 1fr); gap: 3px; margin-bottom: 6px; }
+.tad-product-page .cal-mhdr { font-size: 9px; font-weight: 600; text-align: center; color: rgba(255,255,255,.3); letter-spacing: .04em; text-transform: uppercase; }
+.tad-product-page .cal-row { display: grid; grid-template-columns: 80px repeat(12, 1fr); gap: 3px; margin-bottom: 8px; }
+.tad-product-page .cal-row:last-child { margin-bottom: 0; }
+.tad-product-page .cal-row-lbl { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.55); letter-spacing: .04em; text-transform: uppercase; display: flex; align-items: center; padding-right: 6px; line-height: 1.3; }
+.tad-product-page .cblock { height: 22px; border-radius: 3px; background: rgba(255,255,255,.07); }
+.tad-product-page .cblock.on { background: var(--acc); }
+.tad-product-page .cblock.pk { background: rgba(190,241,39,.45); }
+.tad-product-page .cal-legend { display: flex; gap: 16px; margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.08); }
+.tad-product-page .leg-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: rgba(255,255,255,.45); }
+.tad-product-page .leg-swatch { width: 12px; height: 12px; border-radius: 2px; }
+
+/* ── Grading Cards (seed products) ── */
+.tad-product-page .grade-sec { background: var(--surf); }
+.tad-product-page .grade-intro-text { font-size: 15px; line-height: 1.75; color: var(--tb); margin-bottom: 28px; max-width: 700px; }
+.tad-product-page .grade-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 28px; }
+.tad-product-page .grade-card { background: #fff; border: 1px solid var(--bdr); border-radius: 8px; padding: 22px; box-shadow: var(--sh); }
+.tad-product-page .grade-card h4 { font-family: 'Work Sans', sans-serif; font-size: 15px; font-weight: 700; color: var(--gd); margin-bottom: 6px; }
+.tad-product-page .grade-size { font-size: 11px; font-weight: 700; color: #fff; background: var(--gd); border-radius: 4px; padding: 3px 9px; display: inline-block; margin-bottom: 10px; letter-spacing: .04em; }
+.tad-product-page .grade-card p { font-size: 13.5px; color: var(--tb); line-height: 1.58; margin: 0; }
+
+/* ── CTA Section ── */
+.tad-product-page .cta-sec { background: var(--gdk); position: relative; overflow: hidden; }
+.tad-product-page .cta-glow { position: absolute; top: -100px; right: -80px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(190,241,39,.07) 0%, transparent 65%); pointer-events: none; }
+.tad-product-page .cta-glow2 { position: absolute; bottom: -150px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(190,241,39,.04) 0%, transparent 65%); pointer-events: none; }
+.tad-product-page .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.tad-product-page .cta-img { height: 380px; border-radius: 8px; overflow: hidden; }
+.tad-product-page .cta-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tad-product-page .cta-content h2 { font-family: 'Work Sans', sans-serif; font-size: 38px; font-weight: 600; line-height: 1.1; letter-spacing: -.02em; color: #fff; margin-bottom: 14px; }
+.tad-product-page .cta-body { font-size: 15px; line-height: 1.75; color: rgba(255,255,255,.6); margin-bottom: 28px; }
+.tad-product-page .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.tad-product-page .cta-compliance { display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 6px; padding: 14px 16px; }
+.tad-product-page .cta-compliance svg { width: 16px; height: 16px; stroke: var(--acc); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 1px; }
+.tad-product-page .cta-compliance p { font-size: 12px; color: rgba(255,255,255,.5); line-height: 1.55; margin: 0; }
+.tad-product-page .cta-compliance strong { color: rgba(255,255,255,.7); }
+
+/* ── Back Navigation ── */
+.tad-product-page .back { padding: 36px 0; background: var(--slo); border-top: 1px solid var(--bdr); }
+.tad-product-page .back-i { display: flex; align-items: center; justify-content: space-between; }
+.tad-product-page .back-lnk { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--tm); transition: color .2s; text-decoration: none; }
+.tad-product-page .back-lnk svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
+.tad-product-page .back-lnk:hover { color: var(--gd); }
+.tad-product-page .back-lnk:hover svg { transform: translateX(-3px); }
+.tad-product-page .back-r { font-size: 13px; color: var(--tm); }
+.tad-product-page .back-r a { color: var(--gd); font-weight: 600; border-bottom: 1.5px solid var(--acc); padding-bottom: 1px; text-decoration: none; }
+
+/* ── Stat Cards ── */
+.tad-product-page .stat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.tad-product-page .stat-card { background: #fff; border: 1px solid var(--bdr); border-radius: 8px; padding: 16px 18px; box-shadow: var(--sh); }
+.tad-product-page .stat-card-lbl { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--tm); margin-bottom: 6px; }
+.tad-product-page .stat-card-val { font-family: 'Work Sans', sans-serif; font-size: 24px; font-weight: 700; color: var(--gd); line-height: 1; }
+.tad-product-page .stat-card-sub { font-size: 12px; color: var(--tm); margin-top: 3px; }
+
+/* ── Responsive ── */
+@media (max-width: 1060px) {
+	.tad-product-page .con { padding: 0 32px; }
+	:root { --sg: 72px; }
+	.tad-product-page .ov-grid,
+	.tad-product-page .log-grid,
+	.tad-product-page .cta-grid,
+	.tad-product-page .cal-grid { grid-template-columns: 1fr; }
+	.tad-product-page .ov-badge,
+	.tad-product-page .log-img { display: none; }
+	.tad-product-page .hero h1 { font-size: 38px; }
+	.tad-product-page .ss-row { flex-wrap: wrap; }
+	.tad-product-page .ss-item { min-width: 50%; border-bottom: 1px solid rgba(255,255,255,.08); }
+	.tad-product-page .hero-head { flex-direction: column; }
+	.tad-product-page .hero-cta-wrap { align-items: flex-start; padding-top: 0; }
+	.tad-product-page .grade-grid { grid-template-columns: 1fr; }
+	.tad-product-page .stat-cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+	.tad-product-page .con { padding: 0 16px; }
+	.tad-product-page .hero h1 { font-size: 29px; }
+	.tad-product-page .ss-row { flex-direction: column; }
+	.tad-product-page .ss-item { min-width: 100%; }
+	.tad-product-page .cta-btns { flex-direction: column; }
+	.tad-product-page table.dt { font-size: 12px; }
+	.tad-product-page .back-i { flex-direction: column; gap: 12px; }
+	.tad-product-page .stat-cards { grid-template-columns: 1fr; }
+}

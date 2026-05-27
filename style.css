@@ -5,7 +5,7 @@ Description: Trade Africa Direct is a child theme of Hello Elementor.
 Author: Trade Africa Direct
 Author URI: https://tradeafricadirect.com/
 Template: hello-elementor
-Version: 2.0.0
+Version: 2.0.2
 Text Domain: trade-africa-direct
 License: GNU General Public License v3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -36,6 +36,11 @@ body {
 	background: var(--tad-surface);
 	color: var(--tad-text);
 	font-family: "DM Sans", Arial, sans-serif;
+	padding-top: 104px;
+}
+
+body.admin-bar {
+	padding-top: 136px;
 }
 
 h1,
@@ -59,16 +64,29 @@ a:focus {
 }
 
 .tad-site-header {
-	background: rgba(247, 250, 246, 0.94);
+	background: rgba(247, 250, 246, 0.96);
+	backdrop-filter: blur(10px);
 	border-bottom: 1px solid var(--tad-border);
 	box-shadow: var(--tad-shadow);
-	position: sticky;
+	left: 0;
+	position: fixed;
+	right: 0;
 	top: 0;
+	transform: translateY(0);
+	transition: transform 280ms var(--tad-ease), box-shadow 280ms var(--tad-ease);
 	z-index: 999;
+}
+
+.tad-site-header.is-header-hidden {
+	transform: translateY(-100%);
 }
 
 .admin-bar .tad-site-header {
 	top: 32px;
+}
+
+.admin-bar .tad-site-header.is-header-hidden {
+	transform: translateY(calc(-100% - 32px));
 }
 
 .tad-header__inner {
@@ -78,8 +96,8 @@ a:focus {
 	justify-content: space-between;
 	margin: 0 auto;
 	max-width: var(--tad-container);
-	min-height: 88px;
-	padding: 0 64px;
+	min-height: 104px;
+	padding: 12px 64px;
 	position: relative;
 }
 
@@ -117,10 +135,12 @@ a:focus {
 }
 
 .tad-brand__logo {
+	background: transparent;
 	display: block;
-	height: 48px;
-	max-width: 160px;
+	height: 72px;
+	max-width: min(340px, 72vw);
 	object-fit: contain;
+	object-position: left center;
 	width: auto;
 }
 
@@ -400,9 +420,77 @@ a:focus {
 	font-weight: 700;
 }
 
-.tad-footer__logo .tad-brand__mark {
+.tad-footer__logo--image {
+	display: inline-block;
+}
+
+.tad-footer__logo-image {
+	background: transparent;
+	display: block;
+	height: 64px;
+	max-width: min(300px, 68vw);
+	object-fit: contain;
+	object-position: left center;
+	width: auto;
+}
+
+.tad-floating-actions {
+	align-items: flex-end;
+	bottom: 24px;
+	display: grid;
+	gap: 12px;
+	justify-items: center;
+	position: fixed;
+	right: 24px;
+	z-index: 998;
+}
+
+.tad-back-to-top,
+.tad-whatsapp-float {
+	align-items: center;
+	border: 0;
+	border-radius: 999px;
+	box-shadow: 0 12px 32px rgba(15, 61, 58, 0.22);
+	cursor: pointer;
+	display: inline-flex;
+	height: 52px;
+	justify-content: center;
+	text-decoration: none;
+	transition: background 200ms ease, color 200ms ease, opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
+	width: 52px;
+}
+
+.tad-back-to-top {
+	background: var(--tad-primary);
+	color: #ffffff;
+	opacity: 0;
+	pointer-events: none;
+	visibility: hidden;
+}
+
+.tad-back-to-top.is-visible {
+	opacity: 1;
+	pointer-events: auto;
+	visibility: visible;
+}
+
+.tad-back-to-top:hover,
+.tad-back-to-top:focus {
+	background: var(--tad-primary-deep);
+	color: #ffffff;
+	transform: translateY(-2px);
+}
+
+.tad-whatsapp-float {
 	background: var(--tad-secondary);
 	color: var(--tad-primary-deep);
+}
+
+.tad-whatsapp-float:hover,
+.tad-whatsapp-float:focus {
+	background: var(--tad-secondary-soft);
+	color: var(--tad-primary-deep);
+	transform: translateY(-2px);
 }
 
 .tad-footer__trust-list {
@@ -482,12 +570,41 @@ a:focus {
 }
 
 @media (max-width: 900px) {
+	body {
+		padding-top: 92px;
+	}
+
+	body.admin-bar {
+		padding-top: 138px;
+	}
+
+	.tad-brand__logo {
+		height: 56px;
+		max-width: min(280px, 64vw);
+	}
+
+	.tad-footer__logo-image {
+		height: 52px;
+		max-width: min(260px, 62vw);
+	}
+
 	.admin-bar .tad-site-header {
 		top: 46px;
 	}
 
+	.admin-bar .tad-site-header.is-header-hidden {
+		transform: translateY(calc(-100% - 46px));
+	}
+
 	.tad-header__inner {
-		min-height: 76px;
+		min-height: 92px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	.tad-floating-actions {
+		bottom: 16px;
+		right: 16px;
 	}
 
 	.tad-brand__tagline {
@@ -1536,6 +1653,15 @@ body.tad-reveal-ready .tad-reveal--delay-3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	.tad-site-header {
+		transition: none;
+	}
+
+	.tad-back-to-top,
+	.tad-whatsapp-float {
+		transition: none;
+	}
+
 	.tad-home *,
 	.tad-home *::before,
 	.tad-home *::after {

@@ -13,6 +13,7 @@ get_header();
 
 $quote_url    = home_url( '/request-a-quote/' );
 $products_url = home_url( '/#portfolio' );
+$pi           = tad_get_product_page_images( 'bulk_dried_fruits' );
 ?>
 
 <main id="content" class="tad-product-page">
@@ -41,7 +42,7 @@ $products_url = home_url( '/#portfolio' );
     </div>
     <div class="con" style="padding-bottom:0;margin-top:32px">
       <div class="hero-img">
-        <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=1400&h=500&fit=crop&q=80"
+        <img src="<?php echo esc_url( $pi['hero'] ); ?>"
              alt="<?php esc_attr_e( 'Premium solar-dried tropical fruits ready for export — Uganda Origin', 'trade-africa-direct' ); ?>"
              loading="eager" fetchpriority="high">
         <div class="hero-img-overlay"></div>
@@ -104,7 +105,7 @@ $products_url = home_url( '/#portfolio' );
       </div>
       <div class="ov-img-w tad-reveal tad-reveal--delay-1">
         <div class="ov-img">
-          <img src="https://images.unsplash.com/photo-1595173967420-8ebe1a7ba98c?w=700&h=460&fit=crop&q=80"
+          <img src="<?php echo esc_url( $pi['overview'] ); ?>"
                alt="<?php esc_attr_e( 'Ugandan equatorial farms — source of premium tropical fruits', 'trade-africa-direct' ); ?>" loading="lazy">
         </div>
         <div class="ov-badge">
@@ -165,7 +166,7 @@ $products_url = home_url( '/#portfolio' );
         </div>
       </div>
       <div class="log-img tad-reveal tad-reveal--delay-1">
-        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=700&h=480&fit=crop&q=80"
+        <img src="<?php echo esc_url( $pi['mid'] ); ?>"
              alt="<?php esc_attr_e( 'Export warehouse packing and logistics — Kampala', 'trade-africa-direct' ); ?>" loading="lazy">
       </div>
     </div>
@@ -220,7 +221,7 @@ $products_url = home_url( '/#portfolio' );
   <div class="con">
     <div class="cta-grid">
       <div class="cta-img tad-reveal">
-        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=680&h=400&fit=crop&q=80"
+        <img src="<?php echo esc_url( $pi['cta'] ); ?>"
              alt="<?php esc_attr_e( '1kg commercial sample box — ready for DHL dispatch', 'trade-africa-direct' ); ?>" loading="lazy">
       </div>
       <div class="tad-reveal tad-reveal--delay-1">

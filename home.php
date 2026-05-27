@@ -2,7 +2,7 @@
 /**
  * Blog archive template.
  *
- * Used by the WordPress posts page at /blog/.
+ * Used by the WordPress posts page at /market-insights/.
  *
  * @package HelloElementorChild
  */
@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $quote_url = home_url( '/request-a-quote/' );
 $images    = [
-	'hero_main' => 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1000&h=900&fit=crop&q=80',
-	'hero_top'  => 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=800&h=600&fit=crop&q=80',
-	'hero_low'  => 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=600&fit=crop&q=80',
+	'hero_main' => tad_get_theme_image( 'insights_hero_main' ),
+	'hero_top'  => tad_get_theme_image( 'insights_hero_top' ),
+	'hero_low'  => tad_get_theme_image( 'insights_hero_low' ),
 ];
 
 get_header();

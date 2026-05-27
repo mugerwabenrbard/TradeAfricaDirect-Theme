@@ -10,4 +10,4 @@ page-sourcing-guide-uganda.php
 page-harvest-calendar-2026.php
 /uganda-harvest-calendar-2026/
 
-blog page
+Blog uses Market Insights page at /market-insights/ (no separate /blog/ page).

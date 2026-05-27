@@ -14,8 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $portfolio_url = home_url( '/export-portfolio/' );
 
 $images = [
-	'meeting'   => 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&h=900&fit=crop&q=80',
-	'warehouse' => 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&h=900&fit=crop&q=80',
+	'meeting'   => tad_get_theme_image( 'quote_meeting' ),
+	'warehouse' => tad_get_theme_image( 'quote_warehouse' ),
 ];
 
 $trust_signals = [

@@ -11,16 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $site_name       = get_bloginfo( 'name' );
 $tagline         = get_bloginfo( 'description', 'display' );
-$custom_logo_id  = get_theme_mod( 'custom_logo' );
-$custom_logo     = $custom_logo_id ? wp_get_attachment_image(
-	$custom_logo_id,
-	'full',
-	false,
-	[
-		'class' => 'tad-brand__logo',
-		'alt'   => $site_name,
-	]
-) : '';
+$logo_url        = tad_get_theme_logo_url();
+$has_custom_logo = (bool) get_theme_mod( 'custom_logo' );
 $quote_url       = home_url( '/request-a-quote/' );
 $header_nav_menu = wp_nav_menu(
 	[
@@ -37,21 +29,21 @@ $header_nav_menu = wp_nav_menu(
 
 <header id="site-header" class="tad-site-header">
 	<div class="tad-header__inner">
-		<a class="tad-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="<?php echo esc_attr__( 'Trade Africa Direct home', 'trade-africa-direct' ); ?>">
-			<?php if ( $custom_logo ) : ?>
-				<?php echo $custom_logo; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			<?php else : ?>
-				<span class="tad-brand__mark" aria-hidden="true">TAD</span>
-			<?php endif; ?>
+		<a class="tad-brand tad-brand--logo-image" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="<?php echo esc_attr__( 'Trade Africa Direct home', 'trade-africa-direct' ); ?>">
+			<img
+				class="tad-brand__logo"
+				src="<?php echo esc_url( $logo_url ); ?>"
+				alt="<?php echo esc_attr( $site_name ? $site_name : __( 'Trade Africa Direct', 'trade-africa-direct' ) ); ?>"
+				width="340"
+				height="96"
+				decoding="async"
+			>
 
-			<span class="tad-brand__copy">
-				<span class="tad-brand__name"><?php echo esc_html( $site_name ? $site_name : __( 'Trade Africa Direct', 'trade-africa-direct' ) ); ?></span>
-				<?php if ( $tagline ) : ?>
+			<?php if ( $has_custom_logo && $tagline ) : ?>
+				<span class="tad-brand__copy">
 					<span class="tad-brand__tagline"><?php echo esc_html( $tagline ); ?></span>
-				<?php else : ?>
-					<span class="tad-brand__tagline"><?php esc_html_e( 'Uganda export sourcing partner', 'trade-africa-direct' ); ?></span>
-				<?php endif; ?>
-			</span>
+				</span>
+			<?php endif; ?>
 		</a>
 
 		<div class="tad-header__nav-wrap" data-tad-primary-nav>

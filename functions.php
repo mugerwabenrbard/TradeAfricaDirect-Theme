@@ -14,7 +14,56 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'HELLO_ELEMENTOR_CHILD_VERSION', '2.0.0' );
+require_once get_stylesheet_directory() . '/inc/theme-settings.php';
+
+define( 'HELLO_ELEMENTOR_CHILD_VERSION', '2.0.2' );
+
+/** WhatsApp number in international format without + (update when live number is confirmed). */
+define( 'TAD_WHATSAPP_NUMBER', '256000000000' );
+
+/**
+ * Theme logo URL (Customizer logo, else bundled wordmark).
+ *
+ * @return string
+ */
+function tad_get_theme_logo_url() {
+	$override = tad_get_theme_setting( 'logo_url_override' );
+
+	if ( $override ) {
+		return $override;
+	}
+
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+
+	if ( $custom_logo_id ) {
+		$url = wp_get_attachment_image_url( $custom_logo_id, 'full' );
+
+		if ( $url ) {
+			return $url;
+		}
+	}
+
+	$logo_path = get_stylesheet_directory() . '/assets/images/logo.png';
+	$logo_url  = tad_get_theme_image( 'global_logo' );
+
+	if ( file_exists( $logo_path ) && false !== strpos( $logo_url, '/assets/images/logo.png' ) ) {
+		$logo_url = add_query_arg( 'v', (string) filemtime( $logo_path ), $logo_url );
+	}
+
+	return $logo_url;
+}
+
+/**
+ * WhatsApp chat URL for site-wide floating button and contact links.
+ *
+ * @return string
+ */
+function tad_get_whatsapp_url() {
+	$number = tad_get_theme_setting( 'whatsapp_number' );
+	$digits = preg_replace( '/\D+/', '', $number );
+
+	return $digits ? 'https://wa.me/' . $digits : '';
+}
 
 /**
  * Register theme features and menu labels used by the child theme.
@@ -127,6 +176,49 @@ function hello_elementor_child_scripts_styles() {
 			} else {
 				reveals.forEach(function (element) {
 					element.classList.add('is-visible');
+				});
+			}
+
+			var siteHeader = document.querySelector('.tad-site-header');
+			var backToTop = document.querySelector('[data-tad-back-to-top]');
+			var lastScrollY = window.scrollY;
+			var scrollTicking = false;
+			var headerRevealOffset = 72;
+
+			var updateScrollUi = function () {
+				var currentScrollY = window.scrollY;
+
+				if (siteHeader) {
+					if (currentScrollY <= headerRevealOffset) {
+						siteHeader.classList.remove('is-header-hidden');
+					} else if (currentScrollY > lastScrollY + 4) {
+						siteHeader.classList.add('is-header-hidden');
+					} else if (currentScrollY < lastScrollY - 4) {
+						siteHeader.classList.remove('is-header-hidden');
+					}
+				}
+
+				if (backToTop) {
+					backToTop.classList.toggle('is-visible', currentScrollY > 420);
+				}
+
+				lastScrollY = currentScrollY;
+				scrollTicking = false;
+			};
+
+			var onScroll = function () {
+				if (!scrollTicking) {
+					scrollTicking = true;
+					window.requestAnimationFrame(updateScrollUi);
+				}
+			};
+
+			window.addEventListener('scroll', onScroll, { passive: true });
+			updateScrollUi();
+
+			if (backToTop) {
+				backToTop.addEventListener('click', function () {
+					window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
 				});
 			}
 		}());"
@@ -466,7 +558,6 @@ function tad_create_primary_menu_on_activation( $created_pages ) {
 	$insight_pages = [
 		'market-insights/sourcing-agricultural-products-uganda' => __( 'Uganda Sourcing Guide 2026', 'trade-africa-direct' ),
 		'uganda-harvest-calendar-2026'                         => __( '2026 Harvest Calendar', 'trade-africa-direct' ),
-		'blog'                                                 => __( 'Blog', 'trade-africa-direct' ),
 	];
 
 	foreach ( $insight_pages as $path => $title ) {
@@ -520,11 +611,6 @@ function tad_create_theme_pages_on_activation() {
 			'path'     => 'request-a-quote',
 			'title'    => __( 'Request a B2B Export Quote', 'trade-africa-direct' ),
 			'template' => 'page-request-a-quote.php',
-		],
-		[
-			'path'     => 'blog',
-			'title'    => __( 'Market Insights Blog', 'trade-africa-direct' ),
-			'template' => '',
 		],
 		[
 			'path'     => 'market-insights',
@@ -589,20 +675,83 @@ function tad_create_theme_pages_on_activation() {
 		}
 	}
 
-	if ( ! empty( $created_pages['home'] ) ) {
-		update_option( 'show_on_front', 'page' );
-		update_option( 'page_on_front', (int) $created_pages['home'] );
-	}
-
-	if ( ! empty( $created_pages['blog'] ) ) {
-		update_option( 'page_for_posts', (int) $created_pages['blog'] );
-	}
+	tad_apply_reading_settings( $created_pages );
 
 	tad_create_primary_menu_on_activation( $created_pages );
 
 	flush_rewrite_rules();
 }
 add_action( 'after_switch_theme', 'tad_create_theme_pages_on_activation' );
+
+/**
+ * Set static front page and posts page (Market Insights) in Settings > Reading.
+ *
+ * @param array $page_ids Optional map of slug path => page ID from theme activation.
+ * @return bool True when posts page was configured.
+ */
+function tad_apply_reading_settings( $page_ids = [] ) {
+	$home_id     = ! empty( $page_ids['home'] ) ? (int) $page_ids['home'] : 0;
+	$insights_id = ! empty( $page_ids['market-insights'] ) ? (int) $page_ids['market-insights'] : 0;
+
+	if ( ! $home_id ) {
+		$home_page = get_page_by_path( 'home' );
+		$home_id   = $home_page ? (int) $home_page->ID : 0;
+	}
+
+	if ( ! $insights_id ) {
+		$insights_page = get_page_by_path( 'market-insights' );
+		$insights_id   = $insights_page ? (int) $insights_page->ID : 0;
+	}
+
+	if ( ! $insights_id ) {
+		return false;
+	}
+
+	update_option( 'show_on_front', 'page' );
+
+	if ( $home_id ) {
+		update_option( 'page_on_front', $home_id );
+	}
+
+	update_option( 'page_for_posts', $insights_id );
+
+	return true;
+}
+
+/**
+ * Repair Reading settings when they drift from the theme defaults (no reactivation required).
+ *
+ * @return void
+ */
+function tad_maybe_repair_reading_settings() {
+	if ( wp_installing() ) {
+		return;
+	}
+
+	$insights_page = get_page_by_path( 'market-insights' );
+
+	if ( ! $insights_page ) {
+		return;
+	}
+
+	$insights_id  = (int) $insights_page->ID;
+	$needs_repair = 'page' !== get_option( 'show_on_front' )
+		|| (int) get_option( 'page_for_posts' ) !== $insights_id;
+
+	$home_page = get_page_by_path( 'home' );
+
+	if ( $home_page && (int) get_option( 'page_on_front' ) !== (int) $home_page->ID ) {
+		$needs_repair = true;
+	}
+
+	if ( ! $needs_repair ) {
+		return;
+	}
+
+	tad_apply_reading_settings();
+}
+add_action( 'init', 'tad_maybe_repair_reading_settings', 20 );
+add_action( 'admin_init', 'tad_maybe_repair_reading_settings', 5 );
 
 /**
  * Return the minimum required page setup for this theme.
@@ -638,15 +787,10 @@ function tad_get_theme_setup_requirements() {
 			'template' => 'page-request-a-quote.php',
 		],
 		[
-			'path'     => 'blog',
-			'label'    => __( 'Market Insights Blog', 'trade-africa-direct' ),
+			'path'     => 'market-insights',
+			'label'    => __( 'Market Insights (Blog)', 'trade-africa-direct' ),
 			'template' => '',
 			'role'     => 'posts',
-		],
-		[
-			'path'     => 'market-insights',
-			'label'    => __( 'Market Insights Parent Page', 'trade-africa-direct' ),
-			'template' => '',
 		],
 		[
 			'path'     => 'market-insights/sourcing-agricultural-products-uganda',
@@ -771,7 +915,7 @@ function tad_get_theme_setup_warnings() {
 	}
 
 	$home_page = isset( $pages['home'] ) ? $pages['home'] : null;
-	$blog_page = isset( $pages['blog'] ) ? $pages['blog'] : null;
+	$posts_page = isset( $pages['market-insights'] ) ? $pages['market-insights'] : null;
 
 	if ( 'page' !== get_option( 'show_on_front' ) ) {
 		$warnings[] = __( 'Reading setting mismatch: homepage display should be set to "A static page".', 'trade-africa-direct' );
@@ -781,8 +925,8 @@ function tad_get_theme_setup_warnings() {
 		$warnings[] = __( 'Front page mismatch: the Home page should be selected as the static front page.', 'trade-africa-direct' );
 	}
 
-	if ( $blog_page && (int) get_option( 'page_for_posts' ) !== (int) $blog_page->ID ) {
-		$warnings[] = __( 'Posts page mismatch: the Blog page should be selected as the posts page.', 'trade-africa-direct' );
+	if ( $posts_page && (int) get_option( 'page_for_posts' ) !== (int) $posts_page->ID ) {
+		$warnings[] = __( 'Posts page mismatch: Market Insights should be selected as the posts page in Settings > Reading.', 'trade-africa-direct' );
 	}
 
 	if ( ! has_nav_menu( 'menu-1' ) ) {

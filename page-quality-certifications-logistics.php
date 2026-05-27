@@ -15,13 +15,13 @@ $quote_url     = home_url( '/request-a-quote/' );
 $incoterms_url = home_url( '/market-insights/sourcing-agricultural-products-uganda/' );
 
 $images = [
-	'documents' => 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=900&fit=crop&q=80',
-	'lab'       => 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&h=900&fit=crop&q=80',
-	'packing'   => 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&h=900&fit=crop&q=80',
-	'air'       => 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&h=760&fit=crop&q=80',
-	'sea'       => 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1200&h=760&fit=crop&q=80',
-	'warehouse' => 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&h=900&fit=crop&q=80',
-	'stamp'     => 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=900&h=700&fit=crop&q=80',
+	'documents' => tad_get_theme_image( 'quality_documents' ),
+	'lab'       => tad_get_theme_image( 'quality_lab' ),
+	'packing'   => tad_get_theme_image( 'quality_packing' ),
+	'air'       => tad_get_theme_image( 'quality_route_air' ),
+	'sea'       => tad_get_theme_image( 'quality_route_sea' ),
+	'warehouse' => tad_get_theme_image( 'quality_warehouse' ),
+	'stamp'     => tad_get_theme_image( 'quality_stamp' ),
 ];
 
 $signals = [

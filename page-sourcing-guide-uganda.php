@@ -16,9 +16,9 @@ $calendar_url  = home_url( '/uganda-harvest-calendar-2026/' );
 $quote_url     = home_url( '/request-a-quote/' );
 
 $images = [
-	'hero_main' => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1100&h=900&fit=crop&q=80',
-	'hero_top'  => 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=900&h=620&fit=crop&q=80',
-	'hero_low'  => 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&h=620&fit=crop&q=80',
+	'hero_main' => tad_get_theme_image( 'sourcing_hero_main' ),
+	'hero_top'  => tad_get_theme_image( 'sourcing_hero_top' ),
+	'hero_low'  => tad_get_theme_image( 'sourcing_hero_low' ),
 ];
 
 $summary_items = [

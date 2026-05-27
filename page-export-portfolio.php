@@ -16,16 +16,16 @@ $calendar_url = home_url( '/uganda-harvest-calendar-2026/' );
 $about_url    = home_url( '/about/' );
 
 $imgs = [
-	'avocados'     => 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=1400&h=900&fit=crop&q=80',
-	'coffee'       => 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1400&h=900&fit=crop&q=80',
-	'shea'         => 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1400&h=900&fit=crop&q=80',
-	'dried_fruits' => 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=1000&h=640&fit=crop&q=80',
-	'macadamia'    => 'https://images.unsplash.com/photo-1574226516831-e1dff420e562?w=1000&h=640&fit=crop&q=80',
-	'cocoa'        => 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=1000&h=640&fit=crop&q=80',
-	'fish'         => 'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=1000&h=640&fit=crop&q=80',
-	'farm'         => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=900&h=640&fit=crop&q=80',
-	'warehouse'    => 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&h=640&fit=crop&q=80',
-	'packing'      => 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&h=640&fit=crop&q=80',
+	'avocados'     => tad_get_theme_image( 'portfolio_avocados' ),
+	'coffee'       => tad_get_theme_image( 'portfolio_coffee' ),
+	'shea'         => tad_get_theme_image( 'portfolio_shea' ),
+	'dried_fruits' => tad_get_theme_image( 'portfolio_dried_fruits' ),
+	'macadamia'    => tad_get_theme_image( 'portfolio_macadamia' ),
+	'cocoa'        => tad_get_theme_image( 'portfolio_cocoa' ),
+	'fish'         => tad_get_theme_image( 'portfolio_fish' ),
+	'farm'         => tad_get_theme_image( 'portfolio_farm' ),
+	'warehouse'    => tad_get_theme_image( 'portfolio_warehouse' ),
+	'packing'      => tad_get_theme_image( 'portfolio_packing' ),
 ];
 
 /* ── Featured products (alternating full-bleed sections) ─────────────────── */

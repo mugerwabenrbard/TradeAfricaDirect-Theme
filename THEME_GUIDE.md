@@ -11,8 +11,8 @@ The routine:
 - Creates the required pages if they do not already exist.
 - Assigns the correct WordPress page template to each page.
 - Sets `Home` as the static front page.
-- Sets `Blog` as the WordPress posts page.
-- Creates the `Market Insights` parent page.
+- Sets `Market Insights` as the WordPress posts page (blog archive).
+- Creates the `Market Insights` parent page for pillar content hierarchy.
 - Places the Uganda sourcing guide under `Market Insights`.
 - Creates `Primary Menu` in Appearance > Menus.
 - Assigns `Primary Menu` to the Header menu location.
@@ -29,8 +29,7 @@ If the theme is already active and you need the setup routine to run again, temp
 | About Our Export Company | `/about/` | `page-about.php` |
 | Quality Assurance, Certifications & Logistics | `/quality-certifications-logistics/` | `page-quality-certifications-logistics.php` |
 | Request a B2B Export Quote | `/request-a-quote/` | `page-request-a-quote.php` |
-| Blog / Market Insights Blog | `/blog/` | `home.php` |
-| Market Insights | `/market-insights/` | Default page |
+| Market Insights (blog archive) | `/market-insights/` | `home.php` |
 | Uganda Sourcing Guide | `/market-insights/sourcing-agricultural-products-uganda/` | `page-sourcing-guide-uganda.php` |
 | 2026 Uganda Agricultural Harvest Calendar | `/uganda-harvest-calendar-2026/` | `page-harvest-calendar-2026.php` |
 | Bulk Dried Fruits | `/bulk-dried-fruits-uganda/` | `page-bulk-dried-fruits-uganda.php` |
@@ -80,7 +79,6 @@ The menu structure is:
 - Market Insights
 - Market Insights > Uganda Sourcing Guide 2026
 - Market Insights > 2026 Harvest Calendar
-- Market Insights > Blog
 
 The separate `Request Quote` button is rendered by the theme header and links to `/request-a-quote/`; it is not part of the WordPress menu.
 
@@ -88,7 +86,7 @@ The separate `Request Quote` button is rendered by the theme header and links to
 
 The theme includes:
 
-- `home.php` for the WordPress posts page at `/blog/`.
+- `home.php` for the WordPress posts page at `/market-insights/`.
 - `single.php` for individual blog posts.
 - `assets/css/blog-page.css` for blog archive and single post styling.
 
@@ -96,9 +94,25 @@ For this to work, WordPress must have:
 
 - Settings > Reading > Your homepage displays: `A static page`
 - Homepage: `Home`
-- Posts page: `Blog`
+- Posts page: `Market Insights`
 
 The theme activation routine sets these automatically.
+
+## Site Chrome
+
+- **Logo:** Bundled at `assets/images/logo.png`. Override via **Appearance → Theme Settings → General** (logo URL), **Appearance → Customize → Site Identity → Logo**, in that priority order.
+- **Header:** Fixed header hides on scroll down and reappears on scroll up.
+- **Back to top:** Lime-on-primary button, bottom-right, appears after scrolling.
+- **WhatsApp:** Floating lime button on all pages; set the number under **Appearance → Theme Settings → General**.
+
+## Theme Settings (images & contact)
+
+Go to **Appearance → Theme Settings** in the WordPress admin.
+
+- **General tab:** WhatsApp number, WhatsApp footer label, sales email, optional logo URL override.
+- **Images tab:** Every theme image slot with a label and a **Where** note (page, section, and template file). Paste a full URL from the Media Library to replace placeholder photos. Product pages have four slots each: hero, overview, mid-page block, and bottom CTA.
+
+Image defaults and registry live in `inc/theme-settings.php`. Templates read URLs via `tad_get_theme_image( 'key' )` or `tad_get_product_page_images( 'product_slug' )`.
 
 ## Setup Warnings
 
@@ -110,7 +124,7 @@ Warnings can appear for:
 - A page has the wrong template assigned.
 - A required template file is missing.
 - `Home` is not selected as the static front page.
-- `Blog` is not selected as the posts page.
+- `Market Insights` is not selected as the posts page.
 - `Market Insights > Uganda Sourcing Guide` is not in the correct hierarchy.
 - `Primary Menu` is not assigned to the Header menu location.
 
@@ -122,9 +136,13 @@ Warnings can appear for:
 4. Go to Settings > Reading.
 5. Confirm:
    - Homepage is `Home`.
-   - Posts page is `Blog`.
+   - Posts page is `Market Insights`.
 6. Go to Pages and verify each page uses the correct template from the map above.
 7. Go to Settings > Permalinks and click `Save Changes` if any URL gives a 404.
+
+If a legacy `/blog/` page still exists from an earlier setup, you can delete it after confirming **Posts page** is set to **Market Insights**.
+
+The theme auto-repairs **Settings > Reading** when it detects a mismatch (for example if the old Blog page is still selected as the posts page). Reload any admin screen or the public site once; the warning should clear without reactivating the theme.
 
 ## Adding New Pages
 
@@ -139,6 +157,6 @@ When adding a new required page:
 ## Notes for Content Editors
 
 - Product pages are template-driven pages, not normal blog posts.
-- Market insight articles can be normal WordPress posts and will appear on `/blog/`.
+- Market insight articles are normal WordPress posts and appear at `/market-insights/`.
 - The sourcing guide and harvest calendar are dedicated pillar pages because they use custom layouts.
 - The RFQ/contact form is currently a styled frontend form. It still needs to be connected to a mail handler, CRM, plugin, or custom WordPress submission handler before it can process enquiries.

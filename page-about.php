@@ -17,14 +17,14 @@ $quote_url     = home_url( '/request-a-quote/' );
 $quality_url   = home_url( '/quality-certifications-logistics/' );
 
 $imgs = [
-	'hero'      => 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1400&h=560&fit=crop&q=80',
-	'farm'      => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1000&h=700&fit=crop&q=80',
-	'farmers'   => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1000&h=700&fit=crop&q=80',
-	'banner'    => 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1800&h=700&fit=crop&q=80',
-	'facility'  => 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1000&h=720&fit=crop&q=80',
-	'orchard'   => 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=1000&h=640&fit=crop&q=80',
-	'coffee'    => 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1000&h=640&fit=crop&q=80',
-	'packing'   => 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1000&h=640&fit=crop&q=80',
+	'hero'     => tad_get_theme_image( 'about_hero' ),
+	'farm'     => tad_get_theme_image( 'about_farm' ),
+	'farmers'  => tad_get_theme_image( 'about_farmers' ),
+	'banner'   => tad_get_theme_image( 'about_banner' ),
+	'facility' => tad_get_theme_image( 'about_facility' ),
+	'orchard'  => tad_get_theme_image( 'about_orchard' ),
+	'coffee'   => tad_get_theme_image( 'about_coffee' ),
+	'packing'  => tad_get_theme_image( 'about_packing' ),
 ];
 
 get_header();

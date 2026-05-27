@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $quote_url      = home_url( '/request-a-quote/' );
-$fallback_image = 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1400&h=800&fit=crop&q=80';
+$fallback_image = tad_get_theme_image( 'global_blog_fallback' );
 
 get_header();
 ?>

@@ -13,6 +13,7 @@ get_header();
 
 $quote_url    = home_url( '/request-a-quote/' );
 $products_url = home_url( '/#portfolio' );
+$pi           = tad_get_product_page_images( 'green_coffee' );
 ?>
 
 <main id="content" class="tad-product-page">
@@ -41,7 +42,7 @@ $products_url = home_url( '/#portfolio' );
     </div>
     <div class="con" style="padding-bottom:0;margin-top:32px">
       <div class="hero-img">
-        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1400&h=500&fit=crop&q=80"
+        <img src="<?php echo esc_url( $pi['hero'] ); ?>"
              alt="<?php esc_attr_e( 'Specialty green coffee beans being graded beside a moisture meter — Uganda Origin', 'trade-africa-direct' ); ?>"
              loading="eager" fetchpriority="high">
         <div class="hero-img-overlay"></div>
@@ -104,7 +105,7 @@ $products_url = home_url( '/#portfolio' );
       </div>
       <div class="ov-img-w tad-reveal tad-reveal--delay-1">
         <div class="ov-img">
-          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700&h=460&fit=crop&q=80"
+          <img src="<?php echo esc_url( $pi['overview'] ); ?>"
                alt="<?php esc_attr_e( 'Uganda specialty green coffee beans in a cupping tray beside Q-grader notes', 'trade-africa-direct' ); ?>" loading="lazy">
         </div>
         <div class="ov-badge">
@@ -197,7 +198,7 @@ $products_url = home_url( '/#portfolio' );
         </div>
       </div>
       <div class="log-img tad-reveal tad-reveal--delay-1">
-        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=700&h=480&fit=crop&q=80"
+        <img src="<?php echo esc_url( $pi['mid'] ); ?>"
              alt="<?php esc_attr_e( 'Green coffee beans being graded on a black tray next to a moisture meter', 'trade-africa-direct' ); ?>" loading="lazy">
       </div>
     </div>
@@ -210,7 +211,7 @@ $products_url = home_url( '/#portfolio' );
   <div class="con">
     <div class="cta-grid">
       <div class="cta-img tad-reveal">
-        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=680&h=400&fit=crop&q=80"
+        <img src="<?php echo esc_url( $pi['cta'] ); ?>"
              alt="<?php esc_attr_e( 'Green coffee beans being graded on a black tray next to a moisture meter', 'trade-africa-direct' ); ?>" loading="lazy">
       </div>
       <div class="tad-reveal tad-reveal--delay-1">

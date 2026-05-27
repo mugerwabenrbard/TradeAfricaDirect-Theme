@@ -26,6 +26,7 @@ get_header();
 
 $quote_url    = home_url( '/request-a-quote/' );
 $products_url = home_url( '/#portfolio' );
+$pi           = tad_get_product_page_images( 'seed_template' );
 
 // ─────────────────────────────────────────────────────────────────────────────
 // EDIT THIS DATA BLOCK for each specific seed product.
@@ -40,7 +41,7 @@ $product = [
 	'breadcrumb_label'    => __( '[Product Name]', 'trade-africa-direct' ),
 	'hero_badge_value'    => __( '[Key Stat]', 'trade-africa-direct' ),
 	'hero_badge_label'    => __( '[Stat Label]', 'trade-africa-direct' ),
-	'hero_img_src'        => 'https://images.unsplash.com/photo-1574226516831-e1dff420e562?w=1400&h=500&fit=crop&q=80',
+	'hero_img_src'        => $pi['hero'],
 	'hero_img_alt'        => __( '[Describe the hero image for screen readers and SEO]', 'trade-africa-direct' ),
 	// Quick Specs Strip (4 items)
 	'spec_1_label'        => __( 'Origin', 'trade-africa-direct' ),
@@ -59,14 +60,14 @@ $product = [
 	'overview_p2'         => __( '[Second paragraph — describe your company\'s processing model: traceability, small-batch, fresh-to-market, certifications. End with the key buyer segments: confectionery, snack, industrial food.]', 'trade-africa-direct' ),
 	'overview_badge_val'  => __( '[Purity/Grade]', 'trade-africa-direct' ),
 	'overview_badge_lbl'  => __( '[Badge label, e.g. Certifications]', 'trade-africa-direct' ),
-	'overview_img_src'    => 'https://images.unsplash.com/photo-1526040652367-ac003a0475fe?w=700&h=460&fit=crop&q=80',
+	'overview_img_src'    => $pi['overview'],
 	'overview_img_alt'    => __( '[Overview image alt text]', 'trade-africa-direct' ),
 	// CTA section
 	'cta_h2'              => __( 'Secure Your [Product] Supply for 2026', 'trade-africa-direct' ),
 	'cta_body'            => __( 'We provide Certificate of Analysis (COA) and microbiological test results with every batch.', 'trade-africa-direct' ),
 	'cta_btn1'            => __( 'Request Bulk Price List (FOB/CIF)', 'trade-africa-direct' ),
 	'cta_btn2'            => __( 'Order Commercial Samples (1KG)', 'trade-africa-direct' ),
-	'cta_img_src'         => 'https://images.unsplash.com/photo-1574226516831-e1dff420e562?w=680&h=400&fit=crop&q=80',
+	'cta_img_src'         => $pi['cta'],
 	'cta_img_alt'         => __( '[CTA image alt text]', 'trade-africa-direct' ),
 	// Logistics
 	'packaging_steps'     => [
@@ -272,7 +273,7 @@ $grade_cards = [
         </div>
       </div>
       <div class="log-img tad-reveal tad-reveal--delay-1">
-        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=700&h=480&fit=crop&q=80"
+        <img src="<?php echo esc_url( $pi['mid'] ); ?>"
              alt="<?php esc_attr_e( 'Vacuum-sealed export packaging ready for global transit', 'trade-africa-direct' ); ?>" loading="lazy">
       </div>
     </div>

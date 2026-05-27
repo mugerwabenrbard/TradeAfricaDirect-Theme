@@ -16,17 +16,17 @@ $portfolio_url  = home_url( '/export-portfolio/' );
 $calendar_url   = home_url( '/uganda-harvest-calendar-2026/' );
 $facility_url   = home_url( '/quality-certifications-logistics/' );
 $image_defaults = [
-	'avocados'     => 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=900&h=650&fit=crop&q=80',
-	'coffee'       => 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=520&h=420&fit=crop&q=80',
-	'fruits'       => 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=620&h=420&fit=crop&q=80',
-	'warehouse'    => 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=620&h=420&fit=crop&q=80',
-	'farm'         => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&h=560&fit=crop&q=80',
-	'shea'         => 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=620&h=360&fit=crop&q=80',
-	'cocoa'        => 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=620&h=360&fit=crop&q=80',
-	'fish'         => 'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=620&h=360&fit=crop&q=80',
-	'calendar'     => 'https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=780&h=540&fit=crop&q=80',
-	'packing'      => 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=520&h=360&fit=crop&q=80',
-	'inspection'   => 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=520&h=360&fit=crop&q=80',
+	'avocados'   => tad_get_theme_image( 'home_avocados' ),
+	'coffee'     => tad_get_theme_image( 'home_coffee' ),
+	'fruits'     => tad_get_theme_image( 'home_fruits' ),
+	'warehouse'  => tad_get_theme_image( 'home_warehouse' ),
+	'farm'       => tad_get_theme_image( 'home_farm' ),
+	'shea'       => tad_get_theme_image( 'home_shea' ),
+	'cocoa'      => tad_get_theme_image( 'home_cocoa' ),
+	'fish'       => tad_get_theme_image( 'home_fish' ),
+	'calendar'   => tad_get_theme_image( 'home_calendar' ),
+	'packing'    => tad_get_theme_image( 'home_packing' ),
+	'inspection' => tad_get_theme_image( 'home_inspection' ),
 ];
 
 $stats = [

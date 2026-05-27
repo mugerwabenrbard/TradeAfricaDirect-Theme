@@ -11,8 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $site_name       = get_bloginfo( 'name' ) ? get_bloginfo( 'name' ) : __( 'Trade Africa Direct', 'trade-africa-direct' );
 $quote_url       = home_url( '/request-a-quote/' );
-$sales_email     = 'sales@tradeafricadirect.com';
-$whatsapp_label  = '+256 [add number]';
+$sales_email     = tad_get_theme_setting( 'sales_email' );
+$whatsapp_url    = tad_get_whatsapp_url();
+$whatsapp_label  = tad_get_theme_setting( 'whatsapp_label' );
+$logo_url        = tad_get_theme_logo_url();
 $portfolio_links = [
 	__( 'Bulk Dried Fruits', 'trade-africa-direct' )       => home_url( '/bulk-dried-fruits-uganda/' ),
 	__( 'Macadamia Nuts', 'trade-africa-direct' )          => home_url( '/macadamia-nuts-uganda/' ),
@@ -61,9 +63,16 @@ $footer_nav_menu = wp_nav_menu(
 
 	<div class="tad-footer__inner">
 		<div class="tad-footer__brand">
-			<a class="tad-footer__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<span class="tad-brand__mark" aria-hidden="true">TAD</span>
-				<span><?php echo esc_html( $site_name ); ?></span>
+			<a class="tad-footer__logo tad-footer__logo--image" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+				<img
+					class="tad-footer__logo-image"
+					src="<?php echo esc_url( $logo_url ); ?>"
+					alt="<?php echo esc_attr( $site_name ); ?>"
+					width="300"
+					height="86"
+					loading="lazy"
+					decoding="async"
+				>
 			</a>
 			<p><?php esc_html_e( 'A Kampala-based B2B export partner connecting Ugandan farmers, certified processors, and global procurement managers.', 'trade-africa-direct' ); ?></p>
 			<ul class="tad-footer__trust-list" aria-label="<?php echo esc_attr__( 'Export trust signals', 'trade-africa-direct' ); ?>">
@@ -115,3 +124,25 @@ $footer_nav_menu = wp_nav_menu(
 		<p><?php esc_html_e( 'Built for transparent farm-to-port export sourcing from Uganda.', 'trade-africa-direct' ); ?></p>
 	</div>
 </footer>
+
+<div class="tad-floating-actions" aria-label="<?php echo esc_attr__( 'Quick actions', 'trade-africa-direct' ); ?>">
+	<button type="button" class="tad-back-to-top" data-tad-back-to-top aria-label="<?php esc_attr_e( 'Back to top', 'trade-africa-direct' ); ?>">
+		<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+			<path d="M12 5l-7 7h4v7h6v-7h4l-7-7z" fill="currentColor"/>
+		</svg>
+	</button>
+	<?php if ( $whatsapp_url ) : ?>
+		<a
+			class="tad-whatsapp-float"
+			href="<?php echo esc_url( $whatsapp_url ); ?>"
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="<?php esc_attr_e( 'Chat on WhatsApp', 'trade-africa-direct' ); ?>"
+		>
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+				<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="currentColor"/>
+				<path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.182a8.18 8.18 0 01-4.166-1.14l-.298-.177-2.87.855.855-2.87-.177-.298A8.18 8.18 0 014.818 12c0-4.514 3.668-8.182 8.182-8.182S21.182 7.486 21.182 12 16.514 20.182 12 20.182z" fill="currentColor"/>
+			</svg>
+		</a>
+	<?php endif; ?>
+</div>

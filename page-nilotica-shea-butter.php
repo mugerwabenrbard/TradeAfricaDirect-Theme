@@ -13,6 +13,7 @@ get_header();
 
 $quote_url    = home_url( '/request-a-quote/' );
 $products_url = home_url( '/#portfolio' );
+$pi           = tad_get_product_page_images( 'nilotica_shea' );
 ?>
 
 <main id="content" class="tad-product-page">
@@ -41,7 +42,7 @@ $products_url = home_url( '/#portfolio' );
     </div>
     <div class="con" style="padding-bottom:0;margin-top:32px">
       <div class="hero-img">
-        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1400&h=500&fit=crop&q=80"
+        <img src="<?php echo esc_url( $pi['hero'] ); ?>"
              alt="<?php esc_attr_e( 'Creamy unrefined Nilotica shea butter scooped to show its frosting-like consistency — Uganda', 'trade-africa-direct' ); ?>"
              loading="eager" fetchpriority="high">
         <div class="hero-img-overlay"></div>
@@ -104,7 +105,7 @@ $products_url = home_url( '/#portfolio' );
       </div>
       <div class="ov-img-w tad-reveal tad-reveal--delay-1">
         <div class="ov-img">
-          <img src="https://images.unsplash.com/photo-1611080541599-8c6dbde6ed28?w=700&h=460&fit=crop&q=80"
+          <img src="<?php echo esc_url( $pi['overview'] ); ?>"
                alt="<?php esc_attr_e( 'Cold-pressed unrefined Nilotica shea butter in bulk containers for cosmetic production', 'trade-africa-direct' ); ?>" loading="lazy">
         </div>
         <div class="ov-badge">
@@ -184,7 +185,7 @@ $products_url = home_url( '/#portfolio' );
         </div>
       </div>
       <div class="log-img tad-reveal tad-reveal--delay-1">
-        <img src="https://images.unsplash.com/photo-1598511726623-d2e9996b1c4f?w=700&h=480&fit=crop&q=80"
+        <img src="<?php echo esc_url( $pi['mid'] ); ?>"
              alt="<?php esc_attr_e( 'Cold-press extraction of Nilotica shea butter in Northern Uganda cooperative', 'trade-africa-direct' ); ?>" loading="lazy">
       </div>
     </div>
@@ -224,7 +225,7 @@ $products_url = home_url( '/#portfolio' );
   <div class="con">
     <div class="cta-grid">
       <div class="cta-img tad-reveal">
-        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=680&h=400&fit=crop&q=80"
+        <img src="<?php echo esc_url( $pi['cta'] ); ?>"
              alt="<?php esc_attr_e( 'Nilotica shea butter being scooped — showing its creamy frosting-like consistency', 'trade-africa-direct' ); ?>" loading="lazy">
       </div>
       <div class="tad-reveal tad-reveal--delay-1">

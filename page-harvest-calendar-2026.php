@@ -15,9 +15,9 @@ $quote_url     = home_url( '/request-a-quote/' );
 $portfolio_url = home_url( '/export-portfolio/' );
 
 $images = [
-	'hero_main' => 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1100&h=900&fit=crop&q=80',
-	'hero_top'  => 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=900&h=620&fit=crop&q=80',
-	'hero_low'  => 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=900&h=620&fit=crop&q=80',
+	'hero_main' => tad_get_theme_image( 'harvest_hero_main' ),
+	'hero_top'  => tad_get_theme_image( 'harvest_hero_top' ),
+	'hero_low'  => tad_get_theme_image( 'harvest_hero_low' ),
 ];
 
 $summary_items = [
